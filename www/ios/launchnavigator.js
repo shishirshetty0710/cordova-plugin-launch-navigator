@@ -74,15 +74,6 @@ launchnavigator.navigate = function(destination, start, successCallback, errorCa
             start = start[0]+","+start[1];
         }
         doNavigate(start);
-    }else if(!options.disableAutoGeolocation && navigator.geolocation){ // if cordova-plugin-geolocation is available/enabled
-        navigator.geolocation.getCurrentPosition(function(position){ // attempt to use current location as start position
-            doNavigate(position.coords.latitude+","+position.coords.longitude);
-        },function(error){
-            doNavigate(defaultStartLocation); // Fallback to default current location on error
-        },{
-            maxAge: 60000,
-            timeout: 500
-        });
     }else{
         doNavigate(defaultStartLocation); // Fallback to default current location if geolocation plugin not found/disabled
     }
